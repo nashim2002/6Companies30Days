@@ -1,0 +1,51 @@
+/*-----You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+
+Evaluate the expression. Return an integer that represents the value of the expression.
+
+Note that:
+
+The valid operators are '+', '-', '*', and '/'. it is one type of question to evaluate postfix notation and calculate the value   ----------*/
+
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int>s;
+        for(string i:tokens)
+        {
+            if(i=="+"){
+                int a=s.top();
+                s.pop();
+                int b=s.top();
+                s.pop();
+                s.push(a+b);
+            }
+         else if(i=="*"){
+                int a=s.top();
+                s.pop();
+                int b=s.top();
+                s.pop();
+                s.push(a*b);
+            }
+         else if(i=="-"){
+                int a=s.top();
+                s.pop();
+                int b=s.top();
+                s.pop();
+                s.push(b-a);
+            }
+        else if(i=="/"){
+                int a=s.top();
+                s.pop();
+                int b=s.top();
+                s.pop();
+                s.push(b/a);
+            }
+            else{
+                s.push(stoi(i));
+            }
+
+        }
+        return s.top();
+    }
+};
