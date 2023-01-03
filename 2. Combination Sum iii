@@ -1,0 +1,24 @@
+class Solution {
+public:
+   void combSum3(int i,int k,int n,vector<int>&subset,vector<vector<int>>&ans){
+          if(i>10) return;   
+          if(k==0&&n==0){
+              ans.push_back(subset);   
+              return;
+          } 
+       if(i<=n)
+       {     
+        subset.push_back(i);
+        combSum3(i+1,k-1,n-i,subset,ans);
+        subset.pop_back();
+       }
+       combSum3(i+1,k,n,subset,ans);
+   }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+           vector<int>subset;
+        vector<vector<int>>ans;
+        combSum3(1,k,n,subset,ans);
+        return ans;
+    }
+};
